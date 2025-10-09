@@ -88,3 +88,19 @@ h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
+
+.CV header {
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+.CV h2 {
+  text-decoration: underline;
+  text-align: center;
+}
+
+.CV section {
+  margin-bottom: 2em;
+  border-bottom: 1px solid;
+}
+
