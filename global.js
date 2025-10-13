@@ -77,3 +77,20 @@ if ('colorScheme' in localStorage) {
   document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
   select.value = localStorage.colorScheme;
 }
+
+const form = document.querySelector('form');
+
+form?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const data = new FormData(form);
+
+  const params = [];
+  for (let [name, value] of data) {
+    params.push(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+  }
+
+  const url = `${form.action}?${params.join('&')}`;
+
+  location.href = url;
+});
