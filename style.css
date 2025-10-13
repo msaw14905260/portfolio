@@ -37,7 +37,8 @@ nav a:hover {
 }
 
 nav a.current {
-  border-bottom: 0.4em solid var(--border-color); 
+  border-bottom: 0.4em solid; 
+  border-bottom-color: var(--border-color); 
   padding-bottom: 0.1em;
   font-weight: bold;
 }
