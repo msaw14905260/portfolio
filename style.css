@@ -33,7 +33,7 @@ nav a {
 nav a:hover {
     border-bottom: 0.4em solid var(--color-accent); 
     padding-bottom: 0.1em;
-    background-color: oklch(from var(--color-accent) 95% 5% h)
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 nav a.current {
@@ -109,4 +109,12 @@ html {
   color-scheme: light dark;
   background-color: canvas;
   color: canvastext;
+}
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+  font-family: inherit;
 }
