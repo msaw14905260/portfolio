@@ -2,13 +2,13 @@
   {
     "title": "Project 1: Processed Foods",
     "year": "2025",
-    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "image": "https://github.com/msaw14905260/portfolio/blob/main/images/foods.jpeg?raw=true",
     "description": "Processed foods are cheaper per 100 calories. This bar chart compares the average price per 100 calories between unprocessed and ultra-processed foods, revealing how processed foods are significantly less expensive."
   },
   {
     "title": "Project 2: Climate Change",
     "year": "2025",
-    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "image": "https://github.com/msaw14905260/portfolio/blob/main/images/temp.jpeg?raw=true",
     "description": "This line chart shows the steady rise in global average surface temperature from 1961 to 2024, highlighting the clear upward trend and acceleration of climate change over recent decades."
 
   },
