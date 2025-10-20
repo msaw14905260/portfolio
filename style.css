@@ -119,22 +119,35 @@ html {
   font-family: inherit;
 }
 
+/* === GitHub Stats === */
+#profile-stats {
+  margin-top: 0.5rem;
+}
+
 #profile-stats dl {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5em;
-  text-align: center;
-  margin-top: 1em;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 2.5rem;
+  align-items: end;
+  justify-items: start;
 }
 
 #profile-stats dt {
   grid-row: 1;
-  font-weight: bold;
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
 }
 
 #profile-stats dd {
   grid-row: 2;
   margin: 0;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  color: #111827;
 }
 
 /* === Projects grid & images === */
