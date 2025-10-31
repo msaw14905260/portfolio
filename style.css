@@ -169,24 +169,36 @@ html {
   opacity: 0.7;
 }
 
-#projects-plot {
-  max-width: 20em;
+.container {
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  gap: 2em;        
+  flex-wrap: wrap;   
   margin-block: 2em;
+}
+
+#projects-plot {
+  max-width: 30%;
+  width: 100%;
+  height: auto;
+  flex: 0 1 auto;    
   overflow: visible;
 }
 
 .legend {
   list-style: none;
   padding: 0.75em 1em;
-  margin: 2.5em 0 3em 0;
+  margin: 0;
   border: 1px solid oklch(70% 0.05 200);
   border-radius: 0.5em;
   display: flex;
   align-items: center;
   gap: 1.5em;
-  flex-wrap: nowrap;
   background-color: transparent;
-  justify-content: center;
+  justify-content: flex-start;
+  flex: 1;  
+  flex-wrap: wrap; 
 }
 
 .legend-item {
@@ -200,7 +212,6 @@ html {
   display: inline-block;
   width: 1em;
   height: 1em;
-  aspect-ratio: 1 / 1;
   background: var(--color);
   border-radius: 0.25em;
   border: 1px solid color-mix(in oklch, black, white 80%);
