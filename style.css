@@ -184,6 +184,12 @@ html {
   height: auto;
   flex: 0 1 auto;    
   overflow: visible;
+  &:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+    transition: 300ms;
+  }
+}
 }
 
 .legend {

@@ -50,10 +50,8 @@ function renderAll(projectsGiven) {
   renderPieChart(projectsGiven);
 }
 
-// initial render
 renderAll(projects);
 
-// live search (use 'change' if you want Enter/blur only)
 searchInput.addEventListener('input', (event) => {
   const q = (event.target.value || '').toLowerCase();
   const filteredProjects = projects.filter((p) =>
