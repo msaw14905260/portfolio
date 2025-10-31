@@ -8,6 +8,8 @@ const projectsContainer = document.querySelector('.projects');
 const titleEl = document.querySelector('.projects-title');
 const searchInput = document.querySelector('.searchBar');
 
+let currentFilteredProjects = projects;
+
 const svg = d3.select('#projects-plot');
 const legendEl = d3.select('.legend');
 
@@ -33,8 +35,9 @@ function renderPieChart(projectsGiven) {
   let newArcData = newSliceGenerator(newData);
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-  let svgEl = d3.select('svg');
+  let svgEl = svg;
   svgEl.selectAll('path').remove();
+
   newArcData.forEach((d, i) => {
     svgEl
       .append('path')
@@ -47,14 +50,25 @@ function renderPieChart(projectsGiven) {
           .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : null));
 
         legendEl.selectAll('li')
-          .attr('class', (_, idx) => (
+          .attr('class', (_, idx) =>
             'legend-item' + (idx === selectedIndex ? ' selected' : '')
-          ));
+          );
+
+        const nextCards =
+          selectedIndex === -1
+            ? currentFilteredProjects
+            : currentFilteredProjects.filter(
+                (p) => String(p.year) === String(newData[selectedIndex].label)
+              );
+
+        renderProjects(nextCards, projectsContainer, 'h2');
+        titleEl.textContent = `Projects (${nextCards.length})`;
       });
   });
 
   newData.forEach((d, i) => {
-    legendEl.append('li')
+    legendEl
+      .append('li')
       .attr('class', 'legend-item')
       .attr('style', `--color:${colors(i)}`)
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
@@ -65,9 +79,19 @@ function renderPieChart(projectsGiven) {
           .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : null));
 
         legendEl.selectAll('li')
-          .attr('class', (_, idx) => (
+          .attr('class', (_, idx) =>
             'legend-item' + (idx === selectedIndex ? ' selected' : '')
-          ));
+          );
+
+        const nextCards =
+          selectedIndex === -1
+            ? currentFilteredProjects
+            : currentFilteredProjects.filter(
+                (p) => String(p.year) === String(newData[selectedIndex].label)
+              );
+
+        renderProjects(nextCards, projectsContainer, 'h2');
+        titleEl.textContent = `Projects (${nextCards.length})`;
       });
   });
 }
@@ -82,8 +106,11 @@ renderAll(projects);
 
 searchInput.addEventListener('input', (event) => {
   const q = (event.target.value || '').toLowerCase();
-  const filteredProjects = projects.filter((p) =>
+
+  currentFilteredProjects = projects.filter((p) =>
     Object.values(p).join('\n').toLowerCase().includes(q)
   );
-  renderAll(filteredProjects);
+
+  selectedIndex = -1;
+  renderAll(currentFilteredProjects);
 });
