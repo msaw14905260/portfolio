@@ -6,6 +6,23 @@ const container = document.querySelector('.projects');
 renderProjects(projects, container, 'h2');
 document.querySelector('.projects-title').textContent = `Projects (${projects.length})`;
 
+let query = '';
+
+let searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('input', (event) => {
+  query = event.target.value;
+
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+
+  renderProjects(filteredProjects, container, 'h2');
+  document.querySelector('.projects-title').textContent =
+    `Projects (${filteredProjects.length})`;
+});
+
 let rolledData = d3.rollups(
   projects,
   (v) => v.length,
