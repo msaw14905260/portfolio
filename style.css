@@ -174,3 +174,34 @@ html {
   margin-block: 2em;
   overflow: visible;
 }
+
+.legend {
+  list-style: none;
+  padding: 0.75em 1em;
+  margin: 2.5em 0 3em 0;
+  border: 1px solid oklch(70% 0.05 200);
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  flex-wrap: nowrap;
+  background-color: transparent;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.9rem;
+}
+
+.legend-item .swatch {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  aspect-ratio: 1 / 1;
+  background: var(--color);
+  border-radius: 0.25em;
+  border: 1px solid color-mix(in oklch, black, white 80%);
+}
