@@ -33,7 +33,6 @@ function renderPieChart(projectsGiven) {
   let newArcData = newSliceGenerator(newData);
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-  // draw slices
   let svgEl = d3.select('svg');
   svgEl.selectAll('path').remove();
   newArcData.forEach((d, i) => {
