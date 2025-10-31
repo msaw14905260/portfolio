@@ -2,25 +2,36 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 import { fetchJSON, renderProjects } from '../global.js';
 
 let selectedIndex = -1;
+let selectedLabel = null;
 
 const projects = await fetchJSON('../lib/projects.json');
+let currentFilteredProjects = projects;
+
 const projectsContainer = document.querySelector('.projects');
 const titleEl = document.querySelector('.projects-title');
 const searchInput = document.querySelector('.searchBar');
 
-let currentFilteredProjects = projects;
-
 const svg = d3.select('#projects-plot');
 const legendEl = d3.select('.legend');
 
+function applyCardRender() {
+  const base = currentFilteredProjects;
+  const nextCards = (selectedLabel == null)
+    ? base
+    : base.filter(p => String(p.year) === String(selectedLabel));
+
+  renderProjects(nextCards, projectsContainer, 'h2');
+  if (titleEl) titleEl.textContent = `Projects (${nextCards.length})`;
+}
+
 function renderPieChart(projectsGiven) {
-  let newRolledData = d3.rollups(
+  const newRolledData = d3.rollups(
     projectsGiven,
-    (v) => v.length,
-    (d) => d.year
+    v => v.length,
+    d => d.year
   );
 
-  let newData = newRolledData.map(([year, count]) => ({
+  const newData = newRolledData.map(([year, count]) => ({
     value: count,
     label: year
   }));
@@ -30,87 +41,72 @@ function renderPieChart(projectsGiven) {
 
   if (newData.length === 0) return;
 
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
-  let newSliceGenerator = d3.pie().value((d) => d.value);
-  let newArcData = newSliceGenerator(newData);
-  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  selectedIndex = (selectedLabel == null)
+    ? -1
+    : newData.findIndex(d => String(d.label) === String(selectedLabel));
 
-  let svgEl = svg;
-  svgEl.selectAll('path').remove();
+  if (selectedLabel != null && selectedIndex === -1) {
+    selectedLabel = null;
+    selectedIndex = -1;
+  }
+
+  const colors = d3.scaleOrdinal(d3.schemeTableau10);
+  const newSliceGenerator = d3.pie().value(d => d.value);
+  const newArcData = newSliceGenerator(newData);
+  const arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  const svgEl = svg;
+
+  const applyHighlight = () => {
+    svgEl.selectAll('path')
+      .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : null));
+
+    legendEl.selectAll('li')
+      .attr('class', (_, idx) => (
+        'legend-item' + (idx === selectedIndex ? ' selected' : '')
+      ));
+  };
 
   newArcData.forEach((d, i) => {
-    svgEl
-      .append('path')
+    svgEl.append('path')
       .attr('d', arcGenerator(d))
       .attr('fill', colors(i))
+      .attr('class', i === selectedIndex ? 'selected' : null)
       .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i;
-
-        svgEl.selectAll('path')
-          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : null));
-
-        legendEl.selectAll('li')
-          .attr('class', (_, idx) =>
-            'legend-item' + (idx === selectedIndex ? ' selected' : '')
-          );
-
-        const nextCards =
-          selectedIndex === -1
-            ? currentFilteredProjects
-            : currentFilteredProjects.filter(
-                (p) => String(p.year) === String(newData[selectedIndex].label)
-              );
-
-        renderProjects(nextCards, projectsContainer, 'h2');
-        titleEl.textContent = `Projects (${nextCards.length})`;
+        selectedLabel = (selectedIndex === i) ? null : newData[i].label;
+        selectedIndex = (selectedLabel == null) ? -1 : i;
+        applyHighlight();
+        applyCardRender();
       });
   });
 
   newData.forEach((d, i) => {
-    legendEl
-      .append('li')
-      .attr('class', 'legend-item')
+    legendEl.append('li')
+      .attr('class', i === selectedIndex ? 'legend-item selected' : 'legend-item')
       .attr('style', `--color:${colors(i)}`)
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
       .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i;
-
-        svgEl.selectAll('path')
-          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : null));
-
-        legendEl.selectAll('li')
-          .attr('class', (_, idx) =>
-            'legend-item' + (idx === selectedIndex ? ' selected' : '')
-          );
-
-        const nextCards =
-          selectedIndex === -1
-            ? currentFilteredProjects
-            : currentFilteredProjects.filter(
-                (p) => String(p.year) === String(newData[selectedIndex].label)
-              );
-
-        renderProjects(nextCards, projectsContainer, 'h2');
-        titleEl.textContent = `Projects (${nextCards.length})`;
+        selectedLabel = (selectedIndex === i) ? null : newData[i].label;
+        selectedIndex = (selectedLabel == null) ? -1 : i;
+        applyHighlight();
+        applyCardRender();
       });
   });
 }
 
 function renderAll(projectsGiven) {
-  renderProjects(projectsGiven, projectsContainer, 'h2');
-  titleEl.textContent = `Projects (${projectsGiven.length})`;
-  renderPieChart(projectsGiven);
+  currentFilteredProjects = projectsGiven;
+  applyCardRender();
+  renderPieChart(currentFilteredProjects);
 }
 
 renderAll(projects);
 
-searchInput.addEventListener('input', (event) => {
+searchInput?.addEventListener('input', (event) => {
   const q = (event.target.value || '').toLowerCase();
 
-  currentFilteredProjects = projects.filter((p) =>
+  const nextFiltered = projects.filter(p =>
     Object.values(p).join('\n').toLowerCase().includes(q)
   );
 
-  selectedIndex = -1;
-  renderAll(currentFilteredProjects);
+  renderAll(nextFiltered);
 });
