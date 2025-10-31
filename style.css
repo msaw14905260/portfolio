@@ -161,3 +161,10 @@ html {
   padding: 0.25rem;
   box-sizing: border-box;
 }
+
+.project-text { margin-top: 0.25rem; }
+.project-year {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
