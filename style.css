@@ -240,3 +240,19 @@ html {
 .searchBar::placeholder {
   color: color-mix(in oklch, canvastext, white 60%);
 }
+
+#projects-plot path {
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+path.selected {
+  fill: var(--color);
+}
+
+.legend-item.selected {
+  font-weight: bold;
+}
