@@ -256,3 +256,11 @@ path.selected {
 .legend-item.selected {
   font-weight: bold;
 }
+
+.stats{
+  display:grid;
+  grid-template-columns:max-content 1fr;
+  gap:.25rem .75rem;
+}
+.stats dt{font-weight:600;}
+.stats dd{margin:0;}
