@@ -136,7 +136,8 @@ function renderScatterPlot(data, commits) {
 
   const dots = svg.append('g').attr('class', 'dots');
 
-  dots.selectAll('circle')
+    dots
+    .selectAll('circle')
     .data(commits)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
@@ -144,15 +145,12 @@ function renderScatterPlot(data, commits) {
     .attr('r', 5)
     .attr('fill', 'steelblue')
     .on('mouseenter', (event, commit) => {
-      renderTooltipContent(commit);
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
     })
     .on('mouseleave', () => {
-      document.getElementById('commit-link').textContent = '';
-      document.getElementById('commit-link').removeAttribute('href');
-      document.getElementById('commit-date').textContent = '';
-      document.getElementById('commit-time').textContent = '';
-      document.getElementById('commit-author').textContent = '';
-      document.getElementById('commit-lines').textContent = '';
+        updateTooltipVisibility(false);
     });
 }
 
@@ -168,6 +166,17 @@ function renderTooltipContent(commit) {
   date.textContent = commit.datetime?.toLocaleString('en', {
     dateStyle: 'full',
   });
+}
+
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.hidden = !isVisible;
+}
+
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.style.left = `${event.clientX}px`;
+  tooltip.style.top = `${event.clientY}px`;
 }
 
 let data = await loadData();

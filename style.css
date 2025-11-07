@@ -345,6 +345,8 @@ dl.info {
   grid-template-columns: max-content 1fr;
   gap: 0.25rem 0.75rem;
   margin: 0;
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
 }
 dl.info dt {
   font-size: 0.8rem;
@@ -403,4 +405,9 @@ circle:hover {
   }
   dl.info dd{ color: #e5e7eb; }
   dl.info dt{ color: #9ca3af; }
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
 }
