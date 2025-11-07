@@ -379,3 +379,28 @@ circle {
 circle:hover {
   transform: scale(1.5);
 }
+
+/* tooltip look (styling only) */
+.tooltip{
+  position: fixed;          /* keep from earlier step */
+  top: 1em;
+  left: 1em;
+
+  background: rgba(255,255,255,0.9); /* soft, almost-solid */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12); /* subtle elevation */
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  backdrop-filter: saturate(140%) blur(6px); /* frosted effect */
+}
+
+/* optional dark mode polish */
+@media (prefers-color-scheme: dark){
+  .tooltip{
+    background: rgba(17,24,39,0.85);
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  dl.info dd{ color: #e5e7eb; }
+  dl.info dt{ color: #9ca3af; }
+}
