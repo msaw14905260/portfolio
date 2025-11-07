@@ -128,6 +128,13 @@ function renderScatterPlot(data, commits) {
     .attr('r', 5)
     .attr('fill', 'steelblue');
 
+  const gridlines = svg
+  .append('g')
+  .attr('class', 'gridlines')
+  .attr('transform', `translate(${usableArea.left}, 0)`);
+  
+  gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3
     .axisLeft(yScale)
@@ -142,6 +149,19 @@ function renderScatterPlot(data, commits) {
     .append('g')
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
+}
+
+function renderTooltipContent(commit) {
+  const link = document.getElementById('commit-link');
+  const date = document.getElementById('commit-date');
+
+  if (Object.keys(commit).length === 0) return;
+
+  link.href = commit.url;
+  link.textContent = commit.id;
+  date.textContent = commit.datetime?.toLocaleString('en', {
+    dateStyle: 'full',
+  });
 }
 
 let data = await loadData();
