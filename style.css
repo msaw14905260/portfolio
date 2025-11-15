@@ -429,3 +429,13 @@ dl.info[hidden]:not(:hover, :focus-within) {
 circle.selected {
   fill: #ff6b6b;
 }
+
+.project-link a {
+  color: var(--accent-color, #0074d9);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.project-link a:hover {
+  text-decoration: underline;
+}
