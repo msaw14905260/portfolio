@@ -3,73 +3,84 @@
     "title": "Project 1: Processed Foods",
     "year": "2025",
     "image": "https://raw.githubusercontent.com/msaw14905260/portfolio/main/images/foods.jpeg",
-    "description": "Processed foods are cheaper per 100 calories. This bar chart compares the average price per 100 calories between unprocessed and ultra-processed foods, revealing how processed foods are significantly less expensive."
+    "description": "Processed foods are cheaper per 100 calories. This bar chart compares the average price per 100 calories between unprocessed and ultra-processed foods, revealing how processed foods are significantly less expensive.",
+    "url":""
   },
   {
     "title": "Project 2: Climate Change",
     "year": "2025",
     "image": "https://raw.githubusercontent.com/msaw14905260/portfolio/main/images/temp.jpeg",
-    "description": "This line chart shows the steady rise in global average surface temperature from 1961 to 2024, highlighting the clear upward trend and acceleration of climate change over recent decades."
-
+    "description": "This line chart shows the steady rise in global average surface temperature from 1961 to 2024, highlighting the clear upward trend and acceleration of climate change over recent decades.",
+    "url":"https://msaw14905260.github.io/project-2/"
   },
   {
     "title": "Project 3: Boston Bikewatching",
     "year": "2025",
-    "image": "",
-    "description": "."
+    "image": "https://github.com/msaw14905260/portfolio/blob/main/images/bike.jpeg?raw=true",
+    "description": "An interactive Mapbox + D3 visualization showing BlueBike traffic patterns across Boston and Cambridge, filtered by time of day.",
+    "url":"https://msaw14905260.github.io/bikewatching/"
   },
   {
     "title": "Project 4: Placeholder",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 5: Placeholder",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 6: Placeholder",
     "year": "2024",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 7: Placeholder",
     "year": "2022",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 8: Placeholder",
     "year": "2022",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 9: Placeholder",
     "year": "2021",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 10: Placeholder",
     "year": "2021",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 11: Placeholder",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   },
   {
     "title": "Project 12: Placeholder",
     "year": "2020",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Placeholder project to test layout and styling for future visualization assignments."
+    "description": "Placeholder project to test layout and styling for future visualization assignments.",
+    "url":""
   }
 ]
